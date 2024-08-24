@@ -1,0 +1,12 @@
+.locations {
+  display: grid;
+  direction: rtl;
+  grid-template-columns: 2fr repeat(7, 1fr);
+  overflow: scroll;
+  max-width: 100%;
+}
+
+.top-line {
+  width: 75px;
+  margin: auto;
+}

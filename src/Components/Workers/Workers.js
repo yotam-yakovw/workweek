@@ -1,5 +1,6 @@
 import './Workers.css';
 import Worker from '../Worker/Worker';
+import AddButton from '../AddButton/AddButton';
 import workersSlice from '../../redux/workersSlice';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
@@ -19,11 +20,9 @@ export default function Workers() {
       <div className='day'>חמישי</div>
       <div className='day placeholder' />
       {Array.from({ length: workers }).map((w, key) => (
-        <Worker />
+        <Worker key={key} />
       ))}
-      <button onClick={addWorker} className='button'>
-        +
-      </button>
+      <AddButton onClick={addWorker} />
     </div>
   );
 }

@@ -1,0 +1,10 @@
+.button {
+  color: black;
+  font-size: 30px;
+  border: 1px solid black;
+  border-radius: 20px;
+  width: 25%;
+  margin: 10px auto;
+  cursor: pointer;
+  grid-column: 1 / -1;
+}
