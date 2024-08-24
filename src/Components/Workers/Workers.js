@@ -1,12 +1,15 @@
 import './Workers.css';
-import { useState } from 'react';
 import Worker from '../Worker/Worker';
+import workersSlice from '../../redux/workersSlice';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 export default function Workers() {
-  const [workers, setWorkers] = useState(0);
+  const dispatch = useDispatch();
 
-  const addWorker = () => setWorkers(workers + 1);
+  const addWorker = () => dispatch(workersSlice.actions.addWorker());
 
+  const workers = useSelector((state) => state.workers.value);
   return (
     <div className='workers'>
       <div className='day'>חמישי</div>
