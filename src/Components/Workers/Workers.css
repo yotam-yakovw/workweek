@@ -1,5 +1,6 @@
 .workers {
   display: grid;
+  direction: rtl;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: 50px auto auto;
   justify-items: center;
@@ -8,7 +9,6 @@
   width: 95%;
   max-width: 750px;
   gap: 5px;
-  overflow: auto;
 }
 
 .day {
@@ -25,7 +25,7 @@
 .placeholder {
   background-color: transparent;
   grid-row: 1 / 2;
-  grid-column: 6 / 7;
+  grid-column: 1 / 2;
 }
 
 .button {
@@ -34,7 +34,7 @@
   border: 1px solid black;
   border-radius: 20px;
   width: 25%;
-  margin: auto;
+  margin: 10px auto;
   cursor: pointer;
   grid-column: 1 / -1;
 }
