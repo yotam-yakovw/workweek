@@ -1,7 +1,25 @@
+import './Worker.css';
+
 export default function Worker() {
   return (
-    <div className='worker'>
-      <p>Worker name</p>
-    </div>
+    <>
+      {Array.from({ length: 5 }).map((element, key) => (
+        <textarea
+          type='textarea'
+          dir='rtl'
+          key={key}
+          className='textarea morning'
+        />
+      ))}
+      <p className='worker-name'>Worker name</p>
+      {Array.from({ length: 5 }).map((element, key) => (
+        <textarea
+          type='textarea'
+          dir='rtl'
+          key={key}
+          className='textarea night'
+        />
+      ))}
+    </>
   );
 }
