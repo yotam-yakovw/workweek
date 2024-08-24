@@ -1,0 +1,47 @@
+const workers = [
+  {
+    name: 'joseph',
+    days: {
+      son1: '',
+      son2: '',
+      mon1: '',
+      mon2: '',
+      tue1: '',
+      tue2: '',
+      wed1: '',
+      wed2: '',
+      thu1: '',
+      thu2: '',
+    },
+  },
+  {
+    name: 'sarit',
+    days: {
+      son1: '',
+      son2: '',
+      mon1: '',
+      mon2: '',
+      tue1: '',
+      tue2: '',
+      wed1: '',
+      wed2: '',
+      thu1: '',
+      thu2: '',
+    },
+  },
+  {
+    name: 'amos',
+    days: {
+      son1: '',
+      son2: '',
+      mon1: '',
+      mon2: '',
+      tue1: '',
+      tue2: '',
+      wed1: '',
+      wed2: '',
+      thu1: '',
+      thu2: '',
+    },
+  },
+];
