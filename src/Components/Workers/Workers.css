@@ -7,23 +7,26 @@
   align-items: center;
   margin: 20px auto;
   width: 95%;
-  max-width: 750px;
+  max-height: 80vh;
   gap: 5px;
+  overflow: scroll;
 }
 
 .day {
   background-color: wheat;
-  width: 100%;
+  width: 100px;
   max-width: 100px;
   height: 35px;
   border-radius: 10px;
   position: sticky;
-  top: 10px;
+  top: 20px;
+  overflow: scroll;
   line-height: 35px;
 }
 
 .placeholder {
   background-color: transparent;
+  width: 0;
   grid-row: 1 / 2;
   grid-column: 1 / 2;
 }
