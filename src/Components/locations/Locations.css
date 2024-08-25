@@ -5,6 +5,7 @@
   overflow: scroll;
   max-width: 100%;
   margin: auto;
+  gap: 5px;
 }
 
 .top-line {
