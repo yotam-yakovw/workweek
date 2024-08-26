@@ -29,7 +29,7 @@ export default function Workers() {
 function Worker() {
   return (
     <>
-      <p className='worker-name'>שם עובד</p>
+      <textarea className='worker-name' />
       {Array.from({ length: 5 }).map((element, key) => (
         <textarea dir='rtl' key={key} className='textarea morning' />
       ))}
