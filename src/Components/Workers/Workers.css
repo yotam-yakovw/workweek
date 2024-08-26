@@ -30,3 +30,29 @@
   grid-row: 1 / 2;
   grid-column: 1 / 2;
 }
+
+.worker-name {
+  grid-column: 1 / 2;
+  grid-row: span 2;
+  width: 50%;
+  margin: 0 auto;
+}
+
+.textarea {
+  width: 95%;
+  height: 100px;
+  border: 0;
+  margin: 0 auto;
+  font-size: 14px;
+  resize: none;
+}
+
+.morning {
+  background-color: white;
+  margin-top: 5px;
+}
+
+.night {
+  background-color: whitesmoke;
+  margin-bottom: 5px;
+}

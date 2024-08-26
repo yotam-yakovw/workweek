@@ -12,3 +12,8 @@
   width: 75px;
   margin: auto;
 }
+
+.location-text {
+  resize: none;
+  border: none;
+}

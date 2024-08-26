@@ -1,5 +1,4 @@
 import './Workers.css';
-import Worker from '../Worker/Worker';
 import AddButton from '../AddButton/AddButton';
 import workersSlice from '../../redux/workersSlice';
 import { useDispatch } from 'react-redux';
@@ -24,5 +23,19 @@ export default function Workers() {
       ))}
       <AddButton onClick={addWorker} />
     </div>
+  );
+}
+
+function Worker() {
+  return (
+    <>
+      <p className='worker-name'>שם עובד</p>
+      {Array.from({ length: 5 }).map((element, key) => (
+        <textarea dir='rtl' key={key} className='textarea morning' />
+      ))}
+      {Array.from({ length: 5 }).map((element, key) => (
+        <textarea dir='rtl' key={key} className='textarea night' />
+      ))}
+    </>
   );
 }
