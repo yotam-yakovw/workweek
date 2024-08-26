@@ -1,7 +1,8 @@
 import './App.css';
 import Header from '../Header/Header';
 import Workers from '../Workers/Workers';
-import Locations from '../locations/Locations';
+import Locations from '../Locations/Locations';
+import Notes from '../Notes/Notes';
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
       <Header />
       <Workers />
       <Locations />
+      <Notes />
     </div>
   );
 }

@@ -1,0 +1,34 @@
+.notes {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.note {
+  width: 75%;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.note__input {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid black;
+  line-height: 25px;
+  font-size: 20px;
+  direction: rtl;
+  width: 90%;
+}
+
+.note__input:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  transition: background-color 200ms linear;
+}
+
+.note__input:focus {
+  border: 2px solid black;
+  outline: none;
+}
