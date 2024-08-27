@@ -34,9 +34,9 @@ export default function Locations() {
 function Location() {
   return (
     <>
-      <textarea className='location__textarea' />
+      <textarea className='locations__textarea' />
       {Array.from({ length: 7 }).map((element, key) => (
-        <textarea dir='rtl' key={key} className='location__textarea' />
+        <textarea dir='rtl' key={key} className='locations__textarea' />
       ))}
     </>
   );

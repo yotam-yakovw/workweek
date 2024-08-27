@@ -17,8 +17,8 @@
   margin: auto;
 }
 
-.location__textarea {
-  width: 30vw;
+.locations__textarea {
+  width: 25vw;
   height: 60px;
   resize: none;
   border: 2px solid #808080;

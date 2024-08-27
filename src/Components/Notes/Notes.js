@@ -25,10 +25,11 @@ function Note({ text, notes, setNotes }) {
   const onTextChange = (evt) => setTextValue(evt.target.value);
 
   const onDeleteClick = () => {
-    setNotes([]);
-    const newNotes = notes.filter((word) => word !== text);
-    console.log(newNotes);
-    setNotes([newNotes]);
+    const newNotes = notes.filter((word) => {
+      setTextValue(word);
+      return word !== text;
+    });
+    setNotes(newNotes);
   };
 
   return (
