@@ -1,15 +1,16 @@
 .button {
-  background-color: #808080;
+  background-color: #ccc;
   color: black;
-  font-size: 25px;
+  font-size: 20px;
   border-radius: 25px;
-  height: 50px;
+  height: 40px;
   margin: 20px auto 50px;
   padding: 0 20px;
   cursor: pointer;
 }
 
 .button:hover {
-  background-color: #aaaaaa;
+  background-color: #eee;
   transform: scale(1.1);
+  transition: transform 200ms linear;
 }
