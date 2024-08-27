@@ -5,6 +5,11 @@
   align-items: center;
 }
 
+.notes__title {
+  font-size: 24px;
+  font-weight: 700;
+}
+
 .note {
   width: 90%;
   display: flex;

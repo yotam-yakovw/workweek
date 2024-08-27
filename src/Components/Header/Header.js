@@ -5,13 +5,14 @@ export default function Header() {
     const day = new Date(evt.target.value);
     console.log(day.getDay());
   };
+
   return (
     <header className='header'>
-      <h1 href='/header' className='title'>
+      <h1 href='/header' className='header__title'>
         Header
       </h1>
-      <input type='date' onChange={onDateChange} className='date' />
-      <h3 className='icon'>ICO</h3>
+      <input type='date' onChange={onDateChange} className='header__date' />
+      <h3 className='header__icon'>ICO</h3>
     </header>
   );
 }

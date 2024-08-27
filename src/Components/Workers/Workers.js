@@ -11,18 +11,20 @@ export default function Workers() {
 
   const workers = useSelector((state) => state.workers.value);
   return (
-    <div className='workers'>
-      <div className='day'>ראשון</div>
-      <div className='day'>שני</div>
-      <div className='day'>שלישי</div>
-      <div className='day'>רביעי</div>
-      <div className='day'>חמישי</div>
-      <div className='day placeholder' />
-      {Array.from({ length: workers }).map((w, key) => (
-        <Worker key={key} />
-      ))}
+    <>
+      <div className='workers'>
+        <div className='day'>ראשון</div>
+        <div className='day'>שני</div>
+        <div className='day'>שלישי</div>
+        <div className='day'>רביעי</div>
+        <div className='day'>חמישי</div>
+        <div className='day placeholder' />
+        {Array.from({ length: workers }).map((w, key) => (
+          <Worker key={key} />
+        ))}
+      </div>
       <AddButton onClick={addWorker} />
-    </div>
+    </>
   );
 }
 

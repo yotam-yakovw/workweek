@@ -12,29 +12,31 @@ export default function Locations() {
   const locations = useSelector((state) => state.locations.value);
 
   return (
-    <div className='locations'>
-      <p className='top-line'>אתר</p>
-      <p className='top-line'>א</p>
-      <p className='top-line'>ב</p>
-      <p className='top-line'>ג</p>
-      <p className='top-line'>ד</p>
-      <p className='top-line'>ה</p>
-      <p className='top-line'>ו</p>
-      <p className='top-line'>ש</p>
-      {Array.from({ length: locations }).map((element, key) => (
-        <Location key={key} />
-      ))}
+    <>
+      <div className='locations'>
+        <p className='locations__title'>אתר</p>
+        <p className='locations__title'>א</p>
+        <p className='locations__title'>ב</p>
+        <p className='locations__title'>ג</p>
+        <p className='locations__title'>ד</p>
+        <p className='locations__title'>ה</p>
+        <p className='locations__title'>ו</p>
+        <p className='locations__title'>ש</p>
+        {Array.from({ length: locations }).map((element, key) => (
+          <Location key={key} />
+        ))}
+      </div>
       <AddButton onClick={addLocation} />
-    </div>
+    </>
   );
 }
 
 function Location() {
   return (
     <>
-      <textarea className='location-name' />
+      <textarea className='location__textarea' />
       {Array.from({ length: 7 }).map((element, key) => (
-        <textarea dir='rtl' key={key} className='location-text' />
+        <textarea dir='rtl' key={key} className='location__textarea' />
       ))}
     </>
   );

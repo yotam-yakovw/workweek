@@ -5,27 +5,29 @@
   grid-template-rows: 50px auto auto;
   justify-items: center;
   align-items: center;
-  margin: 20px auto;
-  width: 95%;
+  margin: 20px auto 0;
+  width: 90%;
   max-height: 80vh;
   gap: 5px;
   overflow: scroll;
 }
 
 .day {
-  background-color: wheat;
+  background-color: white;
   width: 100px;
   max-width: 100px;
   height: 35px;
+  border: 2px solid #808080;
   border-radius: 10px;
   position: sticky;
-  top: 20px;
+  top: 10px;
   overflow: scroll;
   line-height: 35px;
 }
 
 .placeholder {
   background-color: transparent;
+  border: none;
   width: 0;
   grid-row: 1 / 2;
   grid-column: 1 / 2;
@@ -40,17 +42,21 @@
   font-size: 16px;
   line-height: 20px;
   margin: 0 auto;
-  border: none;
+  border: 2px solid #808080;
+  border-radius: 10px;
   direction: rtl;
+  text-align: center;
 }
 
 .textarea {
-  width: 95%;
+  width: 30vw;
   height: 100px;
-  border: 0;
+  border: 2px solid #808080;
+  border-radius: 10px;
   margin: 0 auto;
   font-size: 14px;
   resize: none;
+  text-align: center;
 }
 
 .morning {

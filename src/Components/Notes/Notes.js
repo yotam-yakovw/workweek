@@ -10,7 +10,7 @@ export default function Notes() {
 
   return (
     <div className='notes'>
-      <p className='title'>הערות</p>
+      <p className='notes__title'>הערות</p>
       {altNotes.map((text, key) => (
         <Note text={text} notes={altNotes} setNotes={setAltNotes} key={key} />
       ))}
