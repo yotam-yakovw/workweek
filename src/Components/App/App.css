@@ -1,4 +1,7 @@
 .App {
+  width: calc(100vw - 40px);
+  max-width: 560px;
+  margin: 0 auto;
   text-align: center;
   display: flex;
   flex-direction: column;

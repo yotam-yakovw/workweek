@@ -6,7 +6,7 @@
 }
 
 .note {
-  width: 75%;
+  width: 90%;
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
@@ -31,4 +31,15 @@
 .note__input:focus {
   border: 2px solid black;
   outline: none;
+}
+
+.note__delete {
+  cursor: pointer;
+  font-size: 26px;
+}
+
+.note__delete:hover {
+  color: red;
+  transform: scale(1.6);
+  transition: color 200ms ease-out, transform 200ms ease-out;
 }
