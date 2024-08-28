@@ -1,35 +1,46 @@
 import './Notes.css';
 import AddButton from '../AddButton/AddButton';
-import { useState } from 'react';
+import RemoveButton from '../RemoveButton/RemoveButton';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import notesSlice from '../../redux/notesSlice';
 
 export default function Notes() {
-  // const [notes, setNotes] = useState(0);
-  const [altNotes, setAltNotes] = useState(['text', 'note', 'letter']);
+  const dispatch = useDispatch();
 
-  const addNote = () => setAltNotes([...altNotes, '']);
+  const notes = useSelector((state) => state.notes.value);
+
+  const addNote = () => dispatch(notesSlice.actions.addNote());
 
   return (
     <div className='notes'>
       <p className='notes__title'>הערות</p>
-      {altNotes.map((text, key) => (
-        <Note text={text} notes={altNotes} setNotes={setAltNotes} key={key} />
+      {notes.map((note, key) => (
+        <Note note={note} key={key} />
       ))}
       <AddButton onClick={addNote} />
     </div>
   );
 }
 
-function Note({ text, notes, setNotes }) {
-  const [textValue, setTextValue] = useState(text);
+function Note({ note }) {
+  const { id, text } = note;
 
-  const onTextChange = (evt) => setTextValue(evt.target.value);
+  const dispatch = useDispatch();
 
-  const onDeleteClick = () => {
-    const newNotes = notes.filter((word) => {
-      setTextValue(word);
-      return word !== text;
-    });
-    setNotes(newNotes);
+  const { removeNote, setNote } = {
+    removeNote: (id) => dispatch(notesSlice.actions.removeNote(id)),
+    setNote: ({ id, value }) =>
+      dispatch(notesSlice.actions.setNote({ id, value })),
+  };
+
+  const onTextChange = (evt) => {
+    const { id, value } = evt.target;
+    setNote({ id, value });
+  };
+
+  const onDelete = () => {
+    removeNote(id);
   };
 
   return (
@@ -37,13 +48,12 @@ function Note({ text, notes, setNotes }) {
       <p className='note__dot'>•</p>
       <input
         type='text'
-        value={textValue || ''}
+        value={text}
         onChange={onTextChange}
         className='note__input'
+        id={id + '_note'}
       />
-      <p onClick={onDeleteClick} className='note__delete'>
-        ×
-      </p>
+      <RemoveButton onClick={onDelete} />
     </div>
   );
 }

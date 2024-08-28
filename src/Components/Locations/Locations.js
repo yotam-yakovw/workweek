@@ -10,10 +10,7 @@ export default function Locations() {
 
   const locations = useSelector((state) => state.locations.value);
 
-  const addLocation = () => {
-    dispatch(locationsSlice.actions.addLocation());
-    console.log(locations);
-  };
+  const addLocation = () => dispatch(locationsSlice.actions.addLocation());
 
   return (
     <>
@@ -38,8 +35,6 @@ export default function Locations() {
 function Location({ location }) {
   const { id, name, days } = location;
 
-  const locations = useSelector((state) => state.locations.value);
-
   const dispatch = useDispatch();
 
   const { removeLocation, setLocationName, setLocationDay } = {
@@ -62,7 +57,6 @@ function Location({ location }) {
 
   const onDelete = () => {
     removeLocation(id);
-    console.log(locations);
   };
 
   return (
