@@ -3,7 +3,6 @@ import AddButton from '../AddButton/AddButton';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import workersSlice from '../../redux/workersSlice';
-import handleInput from '../../utils/inputHandler';
 
 export default function Workers() {
   const dispatch = useDispatch();
@@ -33,8 +32,6 @@ export default function Workers() {
 function Worker({ worker }) {
   const { id, name, days } = worker;
 
-  const workers = useSelector((state) => state.workers.value);
-
   const dispatch = useDispatch();
 
   const { removeWorker, setWorkerName, setWorkerDay } = {
@@ -47,12 +44,12 @@ function Worker({ worker }) {
 
   const onNameChange = (evt) => {
     const { id, value } = evt.target;
-    handleInput(id, value, setWorkerName);
+    setWorkerName({ id, value });
   };
 
   const onDayChange = (evt) => {
     const { id, value } = evt.target;
-    handleInput(id, value, setWorkerDay);
+    setWorkerDay({ id, value });
   };
 
   const onDelete = () => {
