@@ -2,14 +2,15 @@ import './Workers.css';
 import AddButton from '../AddButton/AddButton';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import workplaceSlice from '../../redux/workplaceSlice';
+import workersSlice from '../../redux/workersSlice';
+import handleInput from '../../utils/inputHandler';
 
 export default function Workers() {
   const dispatch = useDispatch();
 
-  const addWorker = () => dispatch(workplaceSlice.actions.addWorker());
+  const addWorker = () => dispatch(workersSlice.actions.addWorker());
 
-  const workplace = useSelector((state) => state.workplace);
+  const workers = useSelector((state) => state.workers.value);
 
   return (
     <>
@@ -20,7 +21,7 @@ export default function Workers() {
         <div className='day'>רביעי</div>
         <div className='day'>חמישי</div>
         <div className='day placeholder' />
-        {workplace.workers.map((worker, key) => (
+        {workers.map((worker, key) => (
           <Worker worker={worker} key={key} />
         ))}
       </div>
@@ -30,26 +31,39 @@ export default function Workers() {
 }
 
 function Worker({ worker }) {
-  const dispatch = useDispatch();
-  const workplace = useSelector((state) => state.workplace);
-
   const { id, name, days } = worker;
 
+  const workers = useSelector((state) => state.workers.value);
+
+  const dispatch = useDispatch();
+
+  const { removeWorker, setWorkerName, setWorkerDay } = {
+    removeWorker: (id) => dispatch(workersSlice.actions.removeWorker(id)),
+    setWorkerName: ({ id, value }) =>
+      dispatch(workersSlice.actions.setWorkerName({ id, value })),
+    setWorkerDay: ({ id, value }) =>
+      dispatch(workersSlice.actions.setWorkerDay({ id, value })),
+  };
+
   const onNameChange = (evt) => {
-    console.log(evt.target.id);
+    const { id, value } = evt.target;
+    handleInput(id, value, setWorkerName);
+  };
+
+  const onDayChange = (evt) => {
+    const { id, value } = evt.target;
+    handleInput(id, value, setWorkerDay);
   };
 
   const onDelete = () => {
-    console.log(id);
-    dispatch(workplaceSlice.actions.removeWorker(id));
-    console.log(workplace);
+    removeWorker(id);
   };
 
   return (
     <>
       <div className='worker__title'>
         <textarea
-          defaultValue={name}
+          value={name || ''}
           onChange={onNameChange}
           className='worker__name'
           id={id + '_name'}
@@ -60,22 +74,22 @@ function Worker({ worker }) {
       </div>
       {days.morning.map((text, key) => (
         <textarea
-          defaultValue={text}
-          onChange={onNameChange}
+          value={text}
+          onChange={onDayChange}
           dir='rtl'
           key={key}
           className='worker__textarea morning'
-          id={id + '_morning' + key}
+          id={id + '_morning_' + key}
         />
       ))}
       {days.night.map((text, key) => (
         <textarea
-          defaultValue={text}
-          onChange={onNameChange}
+          value={text}
+          onChange={onDayChange}
           dir='rtl'
           key={key}
           className='worker__textarea night'
-          id={id + '_night' + key}
+          id={id + '_night_' + key}
         />
       ))}
     </>

@@ -5,6 +5,7 @@ const locationsSlice = createSlice({
   initialState: { value: 0 },
   reducers: {
     addLocation: (state) => {
+      console.log(state.value);
       state.value += 1;
     },
     reduceLocation: (state) => {

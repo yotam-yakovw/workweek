@@ -16,11 +16,17 @@ const workplaceSlice = createSlice({
     ],
     locations: [
       {
+        id: 0,
         name: '',
         days: ['', '', '', '', '', '', ''],
       },
     ],
-    notes: [''],
+    notes: [
+      {
+        id: 0,
+        text: '',
+      },
+    ],
   },
   reducers: {
     fillWorkplace: (state, action) => (state = action.payload),
@@ -53,7 +59,7 @@ const workplaceSlice = createSlice({
         (worker) => worker.id === action.payload.id
       );
 
-      state.workers[workerIndex].name = action.payload.name;
+      state.workers[workerIndex].name = action.payload.value;
     },
   },
 });
