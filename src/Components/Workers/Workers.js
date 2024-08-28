@@ -1,8 +1,16 @@
 import './Workers.css';
 import AddButton from '../AddButton/AddButton';
-import dataEntry from '../../temp/database';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import workplaceSlice from '../../redux/workplaceSlice';
 
 export default function Workers() {
+  const dispatch = useDispatch();
+
+  const addWorker = () => dispatch(workplaceSlice.actions.addWorker());
+
+  const workplace = useSelector((state) => state.workplace);
+
   return (
     <>
       <div className='workers'>
@@ -12,46 +20,61 @@ export default function Workers() {
         <div className='day'>רביעי</div>
         <div className='day'>חמישי</div>
         <div className='day placeholder' />
-        {dataEntry.workers.map((worker, key) => (
+        {workplace.workers.map((worker, key) => (
           <Worker worker={worker} key={key} />
         ))}
       </div>
-      <AddButton onClick={() => console.log('click')} />
+      <AddButton onClick={() => addWorker()} />
     </>
   );
 }
 
 function Worker({ worker }) {
+  const dispatch = useDispatch();
+  const workplace = useSelector((state) => state.workplace);
+
   const { id, name, days } = worker;
-  const onChange = (evt) => {
+
+  const onNameChange = (evt) => {
     console.log(evt.target.id);
+  };
+
+  const onDelete = () => {
+    console.log(id);
+    dispatch(workplaceSlice.actions.removeWorker(id));
+    console.log(workplace);
   };
 
   return (
     <>
-      <textarea
-        defaultValue={name}
-        onChange={onChange}
-        className='worker-name'
-        id={id + '_name'}
-      />
+      <div className='worker__title'>
+        <textarea
+          defaultValue={name}
+          onChange={onNameChange}
+          className='worker__name'
+          id={id + '_name'}
+        />
+        <button onClick={onDelete} className='worker__delete'>
+          ×
+        </button>
+      </div>
       {days.morning.map((text, key) => (
         <textarea
           defaultValue={text}
-          onChange={onChange}
+          onChange={onNameChange}
           dir='rtl'
           key={key}
-          className='textarea morning'
+          className='worker__textarea morning'
           id={id + '_morning' + key}
         />
       ))}
       {days.night.map((text, key) => (
         <textarea
           defaultValue={text}
-          onChange={onChange}
+          onChange={onNameChange}
           dir='rtl'
           key={key}
-          className='textarea night'
+          className='worker__textarea night'
           id={id + '_night' + key}
         />
       ))}
