@@ -29,8 +29,7 @@ const workersSlice = createSlice({
       });
     },
     removeWorker: (state, action) => {
-      const newWorkers = state.value.filter(({ id }) => id !== action.payload);
-      state.value = newWorkers;
+      state.value = state.value.filter(({ id }) => id !== action.payload);
     },
     setWorkerName: (state, action) => {
       const id = Number(action.payload.id.split('_')[0]);

@@ -1,12 +1,12 @@
 .locations {
   display: grid;
   direction: rtl;
-  grid-template-columns: 2fr repeat(7, 1fr);
+  grid-template-columns: repeat(8, 1fr);
   overflow: scroll;
   width: 90%;
   margin: auto;
   padding: 5px;
-  gap: 5px;
+  gap: 5px 10px;
 }
 
 .locations__title {
@@ -17,8 +17,15 @@
   margin: auto;
 }
 
-.locations__textarea {
+.location__title {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.location__textarea {
   width: 25vw;
+  min-width: 100px;
   height: 60px;
   resize: none;
   border: 2px solid #808080;
@@ -26,4 +33,9 @@
   font-size: 16px;
   line-height: 20px;
   text-align: center;
+}
+
+.location__textarea_name {
+  width: 15vw;
+  margin: 0 auto;
 }

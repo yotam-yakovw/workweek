@@ -1,8 +1,8 @@
 import './AddButton.css';
 
-export default function AddButton(props) {
+export default function AddButton({ onClick }) {
   return (
-    <button onClick={props.onClick} className='button'>
+    <button onClick={onClick} className='add-button'>
       הוסף +
     </button>
   );

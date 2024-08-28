@@ -1,5 +1,6 @@
 import './Workers.css';
 import AddButton from '../AddButton/AddButton';
+import RemoveButton from '../RemoveButton/RemoveButton';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import workersSlice from '../../redux/workersSlice';
@@ -65,9 +66,7 @@ function Worker({ worker }) {
           className='worker__name'
           id={id + '_name'}
         />
-        <button onClick={onDelete} className='worker__delete'>
-          ×
-        </button>
+        <RemoveButton onClick={onDelete} />
       </div>
       {days.morning.map((text, key) => (
         <textarea

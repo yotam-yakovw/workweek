@@ -45,30 +45,11 @@
   resize: none;
   font-size: 16px;
   line-height: 20px;
-  margin: 0 auto;
+  margin: 0 auto 10px;
   border: 2px solid #808080;
   border-radius: 10px;
   direction: rtl;
   text-align: center;
-}
-
-.worker__delete {
-  background-color: white;
-  color: #ff5050;
-  margin-top: 10px;
-  font-size: 20px;
-  font-weight: 700;
-  border-radius: 10px;
-  width: 30px;
-  height: 30px;
-  cursor: pointer;
-}
-
-.worker__delete:hover {
-  background-color: #ff5050;
-  color: black;
-  transform: scale(1.1);
-  transition: transform 100ms linear;
 }
 
 .worker__textarea {
