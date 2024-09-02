@@ -11,6 +11,7 @@ export default function Workers() {
   const addWorker = () => dispatch(workersSlice.actions.addWorker());
 
   const workers = useSelector((state) => state.workers.value);
+  const isEdit = useSelector((state) => state.site.isEdit);
 
   return (
     <>
@@ -25,7 +26,7 @@ export default function Workers() {
           <Worker worker={worker} key={key} />
         ))}
       </div>
-      <AddButton onClick={() => addWorker()} />
+      {isEdit && <AddButton onClick={() => addWorker()} />}
     </>
   );
 }
@@ -42,6 +43,8 @@ function Worker({ worker }) {
     setWorkerDay: ({ id, value }) =>
       dispatch(workersSlice.actions.setWorkerDay({ id, value })),
   };
+
+  const isEdit = useSelector((state) => state.site.isEdit);
 
   const onNameChange = (evt) => {
     const { id, value } = evt.target;
@@ -61,30 +64,37 @@ function Worker({ worker }) {
     <>
       <div className='worker__title'>
         <textarea
+          disabled={!isEdit}
           value={name || ''}
           onChange={onNameChange}
-          className='worker__name'
+          className={`worker__name ${isEdit && 'worker__name_edit'}`}
           id={id + '_name'}
         />
-        <RemoveButton onClick={onDelete} />
+        {isEdit && <RemoveButton onClick={onDelete} />}
       </div>
       {days.morning.map((text, key) => (
         <textarea
+          disabled={!isEdit}
           value={text}
           onChange={onDayChange}
           dir='rtl'
           key={key}
-          className='worker__textarea morning'
+          className={`worker__textarea morning ${
+            isEdit && 'worker__textarea_edit'
+          }`}
           id={id + '_morning_' + key}
         />
       ))}
       {days.night.map((text, key) => (
         <textarea
+          disabled={!isEdit}
           value={text}
           onChange={onDayChange}
           dir='rtl'
           key={key}
-          className='worker__textarea night'
+          className={`worker__textarea night ${
+            isEdit && 'worker__textarea_edit'
+          }`}
           id={id + '_night_' + key}
         />
       ))}

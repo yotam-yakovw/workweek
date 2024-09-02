@@ -4,11 +4,14 @@ import RemoveButton from '../RemoveButton/RemoveButton';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import notesSlice from '../../redux/notesSlice';
+import reactTextareaAutosize from 'react-textarea-autosize';
+import ReactTextareaAutosize from 'react-textarea-autosize';
 
 export default function Notes() {
   const dispatch = useDispatch();
 
   const notes = useSelector((state) => state.notes.value);
+  const isEdit = useSelector((state) => state.site.isEdit);
 
   const addNote = () => dispatch(notesSlice.actions.addNote());
 
@@ -18,7 +21,7 @@ export default function Notes() {
       {notes.map((note, key) => (
         <Note note={note} key={key} />
       ))}
-      <AddButton onClick={addNote} />
+      {isEdit && <AddButton onClick={addNote} />}
     </div>
   );
 }
@@ -34,6 +37,8 @@ function Note({ note }) {
       dispatch(notesSlice.actions.setNote({ id, value })),
   };
 
+  const isEdit = useSelector((state) => state.site.isEdit);
+
   const onTextChange = (evt) => {
     const { id, value } = evt.target;
     setNote({ id, value });
@@ -45,15 +50,19 @@ function Note({ note }) {
 
   return (
     <div className='note'>
-      <p className='note__dot'>•</p>
-      <input
-        type='text'
+      {isEdit ? (
+        <RemoveButton onClick={onDelete} />
+      ) : (
+        <p className='note__dot'>•</p>
+      )}
+      <ReactTextareaAutosize
+        disabled={!isEdit}
+        maxRows={5}
         value={text}
         onChange={onTextChange}
-        className='note__input'
+        className={`note__input ${isEdit && 'note__input_edit'}`}
         id={id + '_note'}
       />
-      <RemoveButton onClick={onDelete} />
     </div>
   );
 }

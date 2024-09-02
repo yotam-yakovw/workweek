@@ -14,17 +14,25 @@ export default function Header() {
     site: useSelector((state) => state.site),
   };
 
+  const onSignIn = () => {};
+
   return (
     <header className='header'>
       <h1 href='/header' className='header__title'>
         Header
       </h1>
-      <button
-        onClick={switchEdit}
-        className={`header__edit ${site.isEdit && 'header__edit_active'}`}
-      >
-        {site.isEdit ? 'Save' : 'Edit'}
-      </button>
+      <div className='header__buttons'>
+        <button
+          onClick={switchEdit}
+          className={`header__button ${site.isEdit && 'header__button_active'}`}
+        >
+          {site.isEdit ? 'Save' : 'Edit'}
+        </button>
+        <button onClick={onSignIn} className='header__button'>
+          Sign Out
+        </button>
+      </div>
+
       {/* <p>{date}</p> */}
       {/* <input
         type='date'
@@ -32,7 +40,6 @@ export default function Header() {
         onChange={onDateChange}
         className='header__date'
       /> */}
-      <h3 className='header__icon'>ICO</h3>
     </header>
   );
 }

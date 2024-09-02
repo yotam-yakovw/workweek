@@ -16,16 +16,21 @@
   flex-direction: row-reverse;
   align-items: center;
   justify-content: space-between;
+  position: relative;
+  margin-bottom: 10px;
 }
 
 .note__input {
   background-color: transparent;
   border: none;
   border-bottom: 1px solid black;
-  line-height: 25px;
-  font-size: 20px;
+  border-radius: 10px;
+  line-height: 22px;
+  font-size: 18px;
   direction: rtl;
-  width: 90%;
+  width: 75%;
+  margin: 0 auto;
+  resize: none;
 }
 
 .note__input:hover {
@@ -36,6 +41,10 @@
 .note__input:focus {
   border: 2px solid black;
   outline: none;
+}
+
+.note__input_edit {
+  border-bottom: 2px solid cornflowerblue;
 }
 
 .note__delete {

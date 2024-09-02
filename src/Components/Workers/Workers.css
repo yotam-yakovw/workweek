@@ -5,7 +5,7 @@
   grid-template-rows: 50px auto auto;
   justify-items: center;
   align-items: center;
-  margin: 20px auto 0;
+  margin: 30px auto;
   padding: 10px;
   width: 90%;
   max-height: 80vh;
@@ -37,25 +37,37 @@
 .worker__title {
   grid-column: 1 / 2;
   grid-row: span 2;
+  position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .worker__name {
+  background-color: floralwhite;
   width: 100px;
   height: 40px;
   resize: none;
   font-size: 16px;
   line-height: 20px;
-  margin: 0 auto 10px;
-  border: 2px solid #808080;
+  margin: auto 0;
+  border: 1px solid grey;
   border-radius: 10px;
   direction: rtl;
   text-align: center;
 }
 
+.worker__name_edit {
+  border: 2px solid cornflowerblue;
+}
+
+.worker__name:disabled {
+  color: black;
+}
+
 .worker__textarea {
   width: 25vw;
   height: 100px;
-  border: 2px solid #808080;
+  border: 1px solid grey;
   border-radius: 10px;
   margin: 0 auto;
   font-size: 14px;
@@ -71,4 +83,8 @@
 .night {
   background-color: whitesmoke;
   margin-bottom: 5px;
+}
+
+.worker__textarea_edit {
+  border: 2px solid cornflowerblue;
 }
