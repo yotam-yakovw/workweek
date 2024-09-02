@@ -6,8 +6,9 @@ const siteSlice = createSlice({
     isEdit: false,
   },
   reducers: {
-    startEdit: (state) => state.isEdit(true),
-    endEdit: (state) => state.isEdit(false),
+    switchEdit: (state) => {
+      state.isEdit = !state.isEdit;
+    },
   },
 });
 

@@ -13,6 +13,32 @@
   margin: 20px 0 0;
 }
 
+.header__edit {
+  background-color: transparent;
+  color: white;
+  box-shadow: -4px -4px 2px #909090 inset;
+  border: 1px solid white;
+  border-radius: 8px;
+  font-size: 26px;
+  font-weight: 700;
+  padding: 0px 10px 10px 5px;
+  cursor: pointer;
+}
+
+.header__edit:hover {
+  color: rgb(255, 165, 0, 0.7);
+}
+
+.header__edit_active {
+  color: orange;
+  box-shadow: 4px 4px 2px #909090 inset;
+  padding: 5px 5px 5px 10px;
+}
+
+.header__edit_active:hover {
+  color: orange;
+}
+
 .header__date {
   background-color: transparent;
   color: white;
