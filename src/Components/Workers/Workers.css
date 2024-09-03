@@ -75,6 +75,10 @@
   text-align: center;
 }
 
+.worker__textarea:disabled {
+  color: black;
+}
+
 .morning {
   background-color: white;
   margin-top: 5px;

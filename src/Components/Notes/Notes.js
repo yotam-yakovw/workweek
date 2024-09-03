@@ -4,7 +4,6 @@ import RemoveButton from '../RemoveButton/RemoveButton';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import notesSlice from '../../redux/notesSlice';
-import reactTextareaAutosize from 'react-textarea-autosize';
 import ReactTextareaAutosize from 'react-textarea-autosize';
 
 export default function Notes() {

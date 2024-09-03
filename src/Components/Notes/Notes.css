@@ -43,6 +43,10 @@
   outline: none;
 }
 
+.note__input:disabled {
+  color: black;
+}
+
 .note__input_edit {
   border-bottom: 2px solid cornflowerblue;
 }

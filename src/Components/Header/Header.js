@@ -7,31 +7,44 @@ export default function Header() {
 
   const switchEdit = () => dispatch(siteSlice.actions.switchEdit());
 
-  const { workers, locations, notes, site } = {
-    workers: useSelector((state) => state.workers.value),
-    locations: useSelector((state) => state.locations.value),
-    notes: useSelector((state) => state.notes.value),
-    site: useSelector((state) => state.site),
-  };
+  const site = useSelector((state) => state.site);
 
   const onSignIn = () => {};
+
+  const onSignOut = () => {};
 
   return (
     <header className='header'>
       <h1 href='/header' className='header__title'>
         Header
       </h1>
-      <div className='header__buttons'>
-        <button
-          onClick={switchEdit}
-          className={`header__button ${site.isEdit && 'header__button_active'}`}
-        >
-          {site.isEdit ? 'Save' : 'Edit'}
-        </button>
-        <button onClick={onSignIn} className='header__button'>
-          Sign Out
-        </button>
-      </div>
+
+      {site.user.username ? (
+        <>
+          <p className='header__workplace'>{site.user.workplace}</p>
+          <div className='header__buttons'>
+            {site.user.isAdmin && (
+              <button
+                onClick={switchEdit}
+                className={`header__button ${
+                  site.isEdit && 'header__button_active'
+                }`}
+              >
+                {site.isEdit ? 'Save' : 'Edit'}
+              </button>
+            )}
+            <button onClick={onSignOut} className='header__button'>
+              Sign Out
+            </button>
+          </div>
+        </>
+      ) : (
+        <div className='header__buttons'>
+          <button onClick={onSignIn} className='header__button'>
+            Sign In
+          </button>
+        </div>
+      )}
 
       {/* <p>{date}</p> */}
       {/* <input
