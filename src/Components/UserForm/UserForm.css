@@ -1,0 +1,52 @@
+.user-form {
+  background-color: whitesmoke;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 200ms linear;
+}
+
+.user-form_open {
+  max-height: 300px;
+  border: 10px solid grey;
+  padding: 20px 10px;
+  opacity: 1;
+}
+
+.user-form__input {
+  font-size: 30px;
+  border: none;
+  border-radius: 20px;
+  width: 30vw;
+  min-width: 240px;
+  padding: 15px;
+  transition: all 200ms linear;
+}
+
+.user-form__input:hover {
+  background-color: rgb(0, 0, 0, 0.1);
+}
+
+.user-form__submit {
+  background-color: white;
+  border: 5px solid grey;
+  border-radius: 20px;
+  font-size: 30px;
+  margin: 0 auto;
+  padding: 5px 25px;
+  cursor: pointer;
+  transition: all 100ms linear;
+}
+
+.user-form__submit:hover {
+  background-color: floralwhite;
+}
+
+.user-form__submit:active {
+  box-shadow: 5px 5px 1px rgb(0, 0, 0, 0.3) inset;
+  padding: 10px 20px 0 30px;
+}

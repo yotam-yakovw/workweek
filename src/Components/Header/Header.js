@@ -1,15 +1,21 @@
 import './Header.css';
 import { useDispatch, useSelector } from 'react-redux';
 import siteSlice from '../../redux/siteSlice';
+import UserForm from '../UserForm/UserForm';
 
 export default function Header() {
   const dispatch = useDispatch();
 
-  const switchEdit = () => dispatch(siteSlice.actions.switchEdit());
+  const { switchEdit, switchForm } = {
+    switchEdit: () => dispatch(siteSlice.actions.switchEdit()),
+    switchForm: () => dispatch(siteSlice.actions.switchForm()),
+  };
 
   const site = useSelector((state) => state.site);
 
-  const onSignIn = () => {};
+  const onSignIn = () => {
+    switchForm();
+  };
 
   const onSignOut = () => {};
 
@@ -19,7 +25,7 @@ export default function Header() {
         Header
       </h1>
 
-      {site.user.username ? (
+      {site.user.email ? (
         <>
           <p className='header__workplace'>{site.user.workplace}</p>
           <div className='header__buttons'>
@@ -30,29 +36,29 @@ export default function Header() {
                   site.isEdit && 'header__button_active'
                 }`}
               >
-                {site.isEdit ? 'Save' : 'Edit'}
+                {site.isEdit ? 'שמור' : 'עריכה'}
               </button>
             )}
             <button onClick={onSignOut} className='header__button'>
-              Sign Out
+              התנתק
             </button>
           </div>
         </>
       ) : (
-        <div className='header__buttons'>
-          <button onClick={onSignIn} className='header__button'>
-            Sign In
-          </button>
-        </div>
+        <>
+          <div className='header__buttons'>
+            <button
+              onClick={onSignIn}
+              className={`header__button ${
+                site.isForm && 'header__button_active'
+              }`}
+            >
+              התחבר
+            </button>
+          </div>
+          {<UserForm />}
+        </>
       )}
-
-      {/* <p>{date}</p> */}
-      {/* <input
-        type='date'
-        value={date}
-        onChange={onDateChange}
-        className='header__date'
-      /> */}
     </header>
   );
 }
