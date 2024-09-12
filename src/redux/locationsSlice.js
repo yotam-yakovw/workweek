@@ -41,6 +41,15 @@ const locationsSlice = createSlice({
 
       state.value[locationIndex].days[id[1]] = action.payload.value;
     },
+    clearLocations: (state) => {
+      state.value = [
+        {
+          id: 0,
+          name: '',
+          days: ['', '', '', '', '', '', ''],
+        },
+      ];
+    },
   },
 });
 

@@ -1,7 +1,11 @@
 import './Header.css';
 import { useDispatch, useSelector } from 'react-redux';
+import Cookies from 'js-cookie';
 import siteSlice from '../../redux/siteSlice';
 import UserForm from '../UserForm/UserForm';
+import workersSlice from '../../redux/workersSlice';
+import locationsSlice from '../../redux/locationsSlice';
+import notesSlice from '../../redux/notesSlice';
 
 export default function Header() {
   const dispatch = useDispatch();
@@ -11,13 +15,26 @@ export default function Header() {
     switchForm: () => dispatch(siteSlice.actions.switchForm()),
   };
 
+  const { clearUser, clearWorkers, clearLocations, clearNotes } = {
+    clearUser: () => dispatch(siteSlice.actions.clearUser()),
+    clearWorkers: () => dispatch(workersSlice.actions.clearWorkers()),
+    clearLocations: () => dispatch(locationsSlice.actions.clearLocations()),
+    clearNotes: () => dispatch(notesSlice.actions.clearNotes()),
+  };
+
   const site = useSelector((state) => state.site);
 
   const onSignIn = () => {
     switchForm();
   };
 
-  const onSignOut = () => {};
+  const onSignOut = () => {
+    Cookies.remove('token');
+    clearUser();
+    clearWorkers();
+    clearLocations();
+    clearNotes();
+  };
 
   return (
     <header className='header'>

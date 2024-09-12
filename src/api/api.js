@@ -1,22 +1,32 @@
 import axios from 'axios';
+import Cookies from 'js-cookie';
+
+const isLoggedIn = Cookies.get('token') ? true : false;
 
 const api = axios.create({
   baseURL: process.env.REACT_APP_API_BASE_URL,
+  headers: {
+    Authorization: isLoggedIn ? `Bearer ${Cookies.get('token')}` : '',
+  },
 });
 
-const signIn = () =>
+const getUser = () =>
   api
-    .post('/signin', {
-      email: 'yotamyakov.w@gmail.com',
-      password: 'yotam123',
-    })
-    .then((res) => {
-      console.log(res.data);
-      return res.data;
-    })
+    .get('/users')
+    .then((res) => res.data)
     .catch((err) => {
-      console.log(err.response);
       throw err.response;
     });
 
-export { signIn };
+const signIn = ({ email, password }) =>
+  api
+    .post('/signin', {
+      email,
+      password,
+    })
+    .then((res) => res.data)
+    .catch((err) => {
+      throw err.response;
+    });
+
+export { getUser, signIn };

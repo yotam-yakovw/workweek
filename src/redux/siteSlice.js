@@ -22,6 +22,14 @@ const siteSlice = createSlice({
     setUser: (state, action) => {
       state.user = action.payload;
     },
+    clearUser: (state) => {
+      state.user = {
+        email: '',
+        workplace: '',
+        isAdmin: false,
+        id: 0,
+      };
+    },
   },
 });
 
