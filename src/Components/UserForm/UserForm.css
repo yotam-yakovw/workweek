@@ -50,3 +50,8 @@
   box-shadow: 5px 5px 1px rgb(0, 0, 0, 0.3) inset;
   padding: 10px 20px 0 30px;
 }
+
+.user-form__error {
+  font-size: small;
+  color: red;
+}

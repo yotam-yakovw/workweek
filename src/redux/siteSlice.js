@@ -19,6 +19,9 @@ const siteSlice = createSlice({
     switchForm: (state) => {
       state.isForm = !state.isForm;
     },
+    setUser: (state, action) => {
+      state.user = action.payload;
+    },
   },
 });
 
