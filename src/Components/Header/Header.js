@@ -6,6 +6,7 @@ import UserForm from '../UserForm/UserForm';
 import workersSlice from '../../redux/workersSlice';
 import locationsSlice from '../../redux/locationsSlice';
 import notesSlice from '../../redux/notesSlice';
+import { editWorkplace } from '../../api/api';
 
 export default function Header() {
   const dispatch = useDispatch();
@@ -22,7 +23,12 @@ export default function Header() {
     clearNotes: () => dispatch(notesSlice.actions.clearNotes()),
   };
 
-  const site = useSelector((state) => state.site);
+  const { site, workers, locations, notes } = {
+    site: useSelector((state) => state.site),
+    workers: useSelector((state) => state.workers.value),
+    locations: useSelector((state) => state.locations.value),
+    notes: useSelector((state) => state.notes.value),
+  };
 
   const onSignIn = () => {
     switchForm();
@@ -34,6 +40,13 @@ export default function Header() {
     clearWorkers();
     clearLocations();
     clearNotes();
+  };
+
+  const onEditClick = () => {
+    if (site.isEdit) {
+      editWorkplace({ workers, locations, notes });
+    }
+    switchEdit();
   };
 
   return (
@@ -48,7 +61,7 @@ export default function Header() {
           <div className='header__buttons'>
             {site.user.isAdmin && (
               <button
-                onClick={switchEdit}
+                onClick={onEditClick}
                 className={`header__button ${
                   site.isEdit && 'header__button_active'
                 }`}

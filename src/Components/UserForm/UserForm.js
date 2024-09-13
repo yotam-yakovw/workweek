@@ -22,7 +22,7 @@ export default function UserForm() {
         setUser(userHash);
         Cookies.set('token', token);
       })
-      .catch((response) => setError(response.data));
+      .catch((err) => setError(err.data));
   };
 
   const onValueChange = (evt) => {

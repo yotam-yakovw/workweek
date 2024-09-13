@@ -29,6 +29,9 @@ const notesSlice = createSlice({
 
       state.value[noteIndex].text = action.payload.value;
     },
+    setNotes: (state, action) => {
+      state.value = action.payload;
+    },
     clearNotes: (state) => {
       state.value = [
         {

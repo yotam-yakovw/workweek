@@ -45,6 +45,9 @@ const workersSlice = createSlice({
 
       state.value[workerIndex].days[id[1]][id[2]] = action.payload.value;
     },
+    setWorkers: (state, action) => {
+      state.value = action.payload;
+    },
     clearWorkers: (state) => {
       state.value = [
         {

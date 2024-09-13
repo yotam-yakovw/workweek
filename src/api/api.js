@@ -26,7 +26,22 @@ const signIn = ({ email, password }) =>
     })
     .then((res) => res.data)
     .catch((err) => {
+      if (!err.response) {
+        err.response = { data: 'Server had an error!' };
+      }
       throw err.response;
     });
 
-export { getUser, signIn };
+const getWorkplace = () =>
+  api
+    .get('workplaces')
+    .then((res) => res.data)
+    .catch((err) => console.log(err));
+
+const editWorkplace = (values) =>
+  api
+    .post('workplaces', values)
+    .then((res) => console.log(res))
+    .catch((err) => console.log(err));
+
+export { getUser, signIn, getWorkplace, editWorkplace };
