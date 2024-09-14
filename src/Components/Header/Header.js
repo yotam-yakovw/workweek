@@ -1,12 +1,12 @@
 import './Header.css';
 import { useDispatch, useSelector } from 'react-redux';
 import Cookies from 'js-cookie';
-import siteSlice from '../../redux/siteSlice';
 import UserForm from '../UserForm/UserForm';
+import siteSlice from '../../redux/siteSlice';
 import workersSlice from '../../redux/workersSlice';
 import locationsSlice from '../../redux/locationsSlice';
 import notesSlice from '../../redux/notesSlice';
-import { editWorkplace } from '../../api/api';
+import { editWorkplace } from '../../utils/api';
 
 export default function Header() {
   const dispatch = useDispatch();
@@ -28,10 +28,6 @@ export default function Header() {
     workers: useSelector((state) => state.workers.value),
     locations: useSelector((state) => state.locations.value),
     notes: useSelector((state) => state.notes.value),
-  };
-
-  const onSignIn = () => {
-    switchForm();
   };
 
   const onSignOut = () => {
@@ -78,7 +74,7 @@ export default function Header() {
         <>
           <div className='header__buttons'>
             <button
-              onClick={onSignIn}
+              onClick={switchForm}
               className={`header__button ${
                 site.isForm && 'header__button_active'
               }`}

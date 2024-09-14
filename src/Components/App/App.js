@@ -4,16 +4,17 @@ import Workers from '../Workers/Workers';
 import Locations from '../Locations/Locations';
 import Notes from '../Notes/Notes';
 import Cookies from 'js-cookie';
-import { getUser, getWorkplace } from '../../api/api';
+import { getAllData } from '../../utils/api';
 import { useDispatch } from 'react-redux';
 import siteSlice from '../../redux/siteSlice';
 import workersSlice from '../../redux/workersSlice';
 import locationsSlice from '../../redux/locationsSlice';
 import notesSlice from '../../redux/notesSlice';
-import { useEffect } from 'react';
 
 function App() {
   const dispatch = useDispatch();
+
+  const token = Cookies.get('token');
 
   const { setUser, setWorkers, setLocations, setNotes } = {
     setUser: (user) => dispatch(siteSlice.actions.setUser(user)),
@@ -23,15 +24,15 @@ function App() {
     setNotes: (notes) => dispatch(notesSlice.actions.setNotes(notes)),
   };
 
-  if (Cookies.get('token')) {
-    getUser()
-      .then((user) => setUser(user))
+  if (token) {
+    getAllData(token)
+      .then(({ user, workplace }) => {
+        setUser(user);
+        setWorkers(workplace.workers);
+        setLocations(workplace.locations);
+        setNotes(workplace.notes);
+      })
       .catch((err) => console.log(err));
-    getWorkplace().then(({ workers, locations, notes }) => {
-      setWorkers(workers);
-      setLocations(locations);
-      setNotes(notes);
-    });
   }
 
   return (

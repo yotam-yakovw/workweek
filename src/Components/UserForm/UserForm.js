@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Cookies from 'js-cookie';
 import siteSlice from '../../redux/siteSlice';
 import inputSlice from '../../redux/inputSlice';
-import { signIn } from '../../api/api';
+import { signIn } from '../../utils/api';
 
 export default function UserForm() {
   const dispatch = useDispatch();
@@ -21,6 +21,7 @@ export default function UserForm() {
       .then(({ userHash, token }) => {
         setUser(userHash);
         Cookies.set('token', token);
+        window.location.reload();
       })
       .catch((err) => setError(err.data));
   };
@@ -34,9 +35,10 @@ export default function UserForm() {
   };
 
   return (
-    <div className={`user-form ${isOpen ? 'user-form_open' : ''}`}>
+    <form className={`user-form ${isOpen ? 'user-form_open' : ''}`}>
       <input
-        type='text'
+        required
+        type='email'
         value={email || ''}
         onChange={onValueChange}
         placeholder='email'
@@ -44,14 +46,16 @@ export default function UserForm() {
         className='user-form__input'
       />
       <input
+        required
         type='password'
+        minLength='8'
         value={password || ''}
         onChange={onValueChange}
         placeholder='password'
         id='password'
         className='user-form__input'
       />
-      <button onClick={onSignIn} className='user-form__submit'>
+      <button type='submit' onSubmit={onSignIn} className='user-form__submit'>
         התחבר
       </button>
       <p
@@ -59,6 +63,6 @@ export default function UserForm() {
       >
         {error}
       </p>
-    </div>
+    </form>
   );
 }
