@@ -16,7 +16,9 @@ export default function UserForm() {
   const updateValue = (values) =>
     dispatch(inputSlice.actions.updateValue(values));
 
-  const onSignIn = () => {
+  const onSignIn = (evt) => {
+    evt.preventDefault();
+    console.log('default prevented?');
     signIn({ email, password })
       .then(({ userHash, token }) => {
         setUser(userHash);
@@ -35,7 +37,10 @@ export default function UserForm() {
   };
 
   return (
-    <form className={`user-form ${isOpen ? 'user-form_open' : ''}`}>
+    <form
+      onSubmit={onSignIn}
+      className={`user-form ${isOpen ? 'user-form_open' : ''}`}
+    >
       <input
         required
         type='email'
@@ -55,7 +60,7 @@ export default function UserForm() {
         id='password'
         className='user-form__input'
       />
-      <button type='submit' onSubmit={onSignIn} className='user-form__submit'>
+      <button type='submit' className='user-form__submit'>
         התחבר
       </button>
       <p
