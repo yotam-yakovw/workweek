@@ -45,6 +45,14 @@
   padding: 10px 5px 5px 10px;
 }
 
+.header__button_cancel {
+  color: orangered;
+}
+
+.header__button_cancel:hover {
+  color: rgb(255, 69, 0, 0.7);
+}
+
 .header__edit_active:hover {
   color: orange;
 }

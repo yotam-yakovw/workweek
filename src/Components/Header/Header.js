@@ -45,6 +45,11 @@ export default function Header() {
     switchEdit();
   };
 
+  const onCancelClick = () => {
+    switchEdit();
+    window.location.reload();
+  };
+
   return (
     <header className='header'>
       <h1 href='/header' className='header__title'>
@@ -55,6 +60,14 @@ export default function Header() {
         <>
           <p className='header__workplace'>{site.user.workplace}</p>
           <div className='header__buttons'>
+            {site.isEdit && (
+              <button
+                onClick={onCancelClick}
+                className='header__button header__button_active header__button_cancel'
+              >
+                בטל
+              </button>
+            )}
             {site.user.isAdmin && (
               <button
                 onClick={onEditClick}
