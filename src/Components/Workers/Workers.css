@@ -16,14 +16,13 @@
 .day {
   background-color: white;
   width: 100px;
-  max-width: 100px;
   height: 35px;
   border: 2px solid #808080;
   border-radius: 10px;
   position: sticky;
   top: 10px;
-  overflow: scroll;
-  line-height: 35px;
+  font-size: 20px;
+  line-height: 30px;
 }
 
 .placeholder {
@@ -47,7 +46,7 @@
   width: 100px;
   height: 40px;
   resize: none;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 20px;
   margin: auto 0;
   border: 1px solid grey;
@@ -66,11 +65,12 @@
 
 .worker__textarea {
   width: 25vw;
+  max-width: 300px;
   height: 100px;
   border: 1px solid grey;
   border-radius: 10px;
   margin: 0 auto;
-  font-size: 14px;
+  font-size: 18px;
   resize: none;
   text-align: center;
 }
