@@ -48,7 +48,7 @@ export default function Header() {
   return (
     <header className='header'>
       <h1 href='/header' className='header__title'>
-        Header
+        WorkWeek
       </h1>
 
       {site.user.email ? (
