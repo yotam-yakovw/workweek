@@ -1,4 +1,5 @@
 import './Locations.css';
+import { Fragment } from 'react';
 import AddButton from '../AddButton/AddButton';
 import locationsSlice from '../../redux/locationsSlice';
 import { useDispatch } from 'react-redux';
@@ -14,7 +15,7 @@ export default function Locations() {
   const addLocation = () => dispatch(locationsSlice.actions.addLocation());
 
   return (
-    <>
+    <Fragment>
       <div className='locations'>
         <p className='locations__title'>אתר</p>
         <p className='locations__title'>א</p>
@@ -29,7 +30,7 @@ export default function Locations() {
         ))}
       </div>
       {isEdit && <AddButton onClick={addLocation} />}
-    </>
+    </Fragment>
   );
 }
 
@@ -63,7 +64,7 @@ function Location({ location }) {
   };
 
   return (
-    <>
+    <Fragment>
       <div className='location__title'>
         {isEdit && <RemoveButton onClick={onDelete} />}
         <textarea
@@ -89,6 +90,6 @@ function Location({ location }) {
           id={id + '_' + key}
         />
       ))}
-    </>
+    </Fragment>
   );
 }

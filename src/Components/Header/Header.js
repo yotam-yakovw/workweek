@@ -1,4 +1,5 @@
 import './Header.css';
+import { Fragment } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Cookies from 'js-cookie';
 import UserForm from '../UserForm/UserForm';
@@ -57,7 +58,7 @@ export default function Header() {
       </h1>
 
       {site.user.email ? (
-        <>
+        <Fragment>
           <p className='header__workplace'>{site.user.workplace}</p>
           <div className='header__buttons'>
             {site.isEdit && (
@@ -82,9 +83,9 @@ export default function Header() {
               התנתק
             </button>
           </div>
-        </>
+        </Fragment>
       ) : (
-        <>
+        <Fragment>
           <div className='header__buttons'>
             <button
               onClick={switchForm}
@@ -96,7 +97,7 @@ export default function Header() {
             </button>
           </div>
           {<UserForm />}
-        </>
+        </Fragment>
       )}
     </header>
   );

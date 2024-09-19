@@ -1,11 +1,16 @@
 import './Workers.css';
+import { Fragment } from 'react';
 import AddButton from '../AddButton/AddButton';
 import RemoveButton from '../RemoveButton/RemoveButton';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import workersSlice from '../../redux/workersSlice';
+import { useState } from 'react';
 
 export default function Workers() {
+  const [selectedWorker, setSelectedWorker] = useState({});
+  const weekdays = ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי'];
+
   const dispatch = useDispatch();
 
   const addWorker = () => dispatch(workersSlice.actions.addWorker());
@@ -13,25 +18,55 @@ export default function Workers() {
   const workers = useSelector((state) => state.workers.value);
   const isEdit = useSelector((state) => state.site.isEdit);
 
+  const clearSelection = () => {
+    setSelectedWorker({});
+  };
+
   return (
-    <>
-      <div className='workers'>
-        <div className='day'>ראשון</div>
-        <div className='day'>שני</div>
-        <div className='day'>שלישי</div>
-        <div className='day'>רביעי</div>
-        <div className='day'>חמישי</div>
-        <div className='day placeholder' />
-        {workers.map((worker, key) => (
-          <Worker worker={worker} key={key} />
-        ))}
+    <Fragment>
+      <div className={`workers ${selectedWorker.name && 'workers_single'}`}>
+        {selectedWorker.name ? (
+          <Fragment>
+            <RemoveButton onClick={clearSelection} />
+            <p className='workers_single__name'>{selectedWorker.name}</p>
+            <div className='workers_single__days'>
+              {weekdays.map((day, index) => (
+                <div className='workers_single__day' key={index}>
+                  <p className='workers_single__text'>{day}</p>
+                  <p className='workers_single__text'>
+                    {selectedWorker.days.morning[index]}
+                  </p>
+                  <p className='workers_single__text'>
+                    {selectedWorker.days.night[index]}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </Fragment>
+        ) : (
+          <Fragment>
+            {weekdays.map((day, key) => (
+              <div className='day' key={key}>
+                {day}
+              </div>
+            ))}
+            <div className='day placeholder' />
+            {workers.map((worker, key) => (
+              <Worker
+                worker={worker}
+                key={key}
+                selectWorker={setSelectedWorker}
+              />
+            ))}
+          </Fragment>
+        )}
       </div>
       {isEdit && <AddButton onClick={() => addWorker()} />}
-    </>
+    </Fragment>
   );
 }
 
-function Worker({ worker }) {
+function Worker({ worker, selectWorker }) {
   const { id, name, days } = worker;
 
   const dispatch = useDispatch();
@@ -60,11 +95,16 @@ function Worker({ worker }) {
     removeWorker(id);
   };
 
+  const onWorkerSelect = () => {
+    selectWorker(worker);
+  };
+
   return (
-    <>
+    <Fragment>
       <div className='worker__title'>
         <textarea
-          disabled={!isEdit}
+          readOnly={!isEdit}
+          onClick={isEdit ? undefined : onWorkerSelect}
           value={name || ''}
           onChange={onNameChange}
           className={`worker__name ${isEdit && 'worker__name_edit'}`}
@@ -98,6 +138,6 @@ function Worker({ worker }) {
           id={id + '_night_' + key}
         />
       ))}
-    </>
+    </Fragment>
   );
 }
