@@ -15,6 +15,7 @@
 ## Upcoming Features
 
 - Update user management for admin priveleges and sign up requests
+- English translation
 
 ## Links
 
