@@ -1,25 +1,65 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "name": "Workweek App",
+  "short_name": "Workweek",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f5f5f5",
+  "theme_color": "#505050",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "src": "/workweek-logo_64x64.png",
+      "sizes": "64x64",
+      "type": "image/png",
+      "purpose": "maskable"
     },
     {
-      "src": "logo192.png",
+      "src": "/workweek-logo_128x128.png",
+      "sizes": "128x128",
       "type": "image/png",
-      "sizes": "192x192"
+      "purpose": "maskable"
     },
     {
-      "src": "logo512.png",
+      "src": "/workweek-logo_192x192.png",
+      "sizes": "192x192",
       "type": "image/png",
-      "sizes": "512x512"
+      "purpose": "maskable"
+    },
+    {
+      "src": "/workweek-logo_256x256.png",
+      "sizes": "256x256",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/workweek-logo_512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "screenshots": [
+    {
+      "src": "/workweek-screenshot_narrow.webp",
+      "sizes": "484x1188",
+      "type": "image/webp",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "/workweek-screenshot_large.webp",
+      "sizes": "928x1080",
+      "type": "image/webp",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "/workweek-screenshot_wide.webp",
+      "sizes": "1280x720",
+      "type": "image/webp",
+      "form_factor": "wide"
+    }
+  ],
+  "prefer_related_applications": "true",
+  "orientation": "portrait",
+  "lang": "he",
+  "dir": "rtl",
+  "description": "App for managing the week for our workplace"
 }
