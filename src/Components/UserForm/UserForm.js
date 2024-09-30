@@ -4,11 +4,12 @@ import { useState } from 'react';
 import Cookies from 'js-cookie';
 import siteSlice from '../../redux/siteSlice';
 import inputSlice from '../../redux/inputSlice';
-import { signIn } from '../../utils/api';
+import { signUpReq, signIn } from '../../utils/api';
 
 export default function UserForm() {
   const dispatch = useDispatch();
   const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const selectedForm = useSelector((state) => state.site.selectedForm);
   const { email, password, workplace } = useSelector((state) => state.input);
@@ -20,6 +21,8 @@ export default function UserForm() {
   const onSignIn = (evt) => {
     evt.preventDefault();
     setIsLoading(true);
+    setError('');
+    setSuccess('');
 
     signIn({ email, password })
       .then(({ userHash, token }) => {
@@ -27,6 +30,18 @@ export default function UserForm() {
         Cookies.set('token', token);
         window.location.reload();
       })
+      .catch((err) => setError(err.data))
+      .finally(() => setIsLoading(false));
+  };
+
+  const onSignUp = (evt) => {
+    evt.preventDefault();
+    setIsLoading(true);
+    setError('');
+    setSuccess('');
+
+    signUpReq({ email, password, workplace })
+      .then((data) => setSuccess(data))
       .catch((err) => setError(err.data))
       .finally(() => setIsLoading(false));
   };
@@ -41,7 +56,7 @@ export default function UserForm() {
 
   return (
     <form
-      onSubmit={onSignIn}
+      onSubmit={selectedForm === 'signup' ? onSignUp : onSignIn}
       className={`user-form ${selectedForm ? 'user-form_open' : ''}`}
     >
       {selectedForm === 'signup' && (
@@ -90,16 +105,13 @@ export default function UserForm() {
         disabled={isLoading}
         type='submit'
         className={`user-form__submit ${
-          isLoading && 'user-form__submit_loading'
+          isLoading ? 'user-form__submit_loading' : ''
         }`}
       >
         {selectedForm === 'signup' ? 'שלח בקשה' : 'התחבר'}
       </button>
-      <p
-        className={`user-form__error ${error ? 'user-form__error_active' : ''}`}
-      >
-        {error}
-      </p>
+      {error && <p className='user-form__error'>{error}</p>}
+      {success && <p className='user-form__success'>{success}</p>}
     </form>
   );
 }

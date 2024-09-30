@@ -69,6 +69,11 @@
   color: red;
 }
 
+.user-form__success {
+  font-size: small;
+  color: green;
+}
+
 @keyframes loading {
   0% {
     opacity: 1;

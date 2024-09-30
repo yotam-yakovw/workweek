@@ -5,6 +5,21 @@ const api = axios.create({
   baseURL: process.env.REACT_APP_API_BASE_URL,
 });
 
+const signUpReq = ({ email, password, workplace }) =>
+  api
+    .post('/signupreq', {
+      email,
+      password,
+      workplace,
+    })
+    .then((res) => res.data)
+    .catch((err) => {
+      if (!err.response) {
+        err.response = { data: 'Server had an error!' };
+      }
+      throw err.response;
+    });
+
 const signIn = ({ email, password }) =>
   api
     .post('/signin', {
@@ -55,4 +70,4 @@ const getAllData = () => {
   });
 };
 
-export { getAllData, signIn, editWorkplace };
+export { getAllData, signUpReq, signIn, editWorkplace };
