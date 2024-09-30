@@ -12,9 +12,9 @@ import { editWorkplace } from '../../utils/api';
 export default function Header() {
   const dispatch = useDispatch();
 
-  const { switchEdit, switchForm } = {
+  const { switchEdit, selectForm } = {
     switchEdit: () => dispatch(siteSlice.actions.switchEdit()),
-    switchForm: () => dispatch(siteSlice.actions.switchForm()),
+    selectForm: (form) => dispatch(siteSlice.actions.selectForm(form)),
   };
 
   const { clearUser, clearWorkers, clearLocations, clearNotes } = {
@@ -29,6 +29,22 @@ export default function Header() {
     workers: useSelector((state) => state.workers.value),
     locations: useSelector((state) => state.locations.value),
     notes: useSelector((state) => state.notes.value),
+  };
+
+  const selectSignin = () => {
+    if (site.selectedForm !== 'signin') {
+      selectForm('signin');
+    } else {
+      selectForm('');
+    }
+  };
+
+  const selectSignup = () => {
+    if (site.selectedForm !== 'signup') {
+      selectForm('signup');
+    } else {
+      selectForm('');
+    }
   };
 
   const onSignOut = () => {
@@ -88,12 +104,20 @@ export default function Header() {
         <Fragment>
           <div className='header__buttons'>
             <button
-              onClick={switchForm}
+              onClick={selectSignin}
               className={`header__button ${
-                site.isForm && 'header__button_active'
+                site.selectedForm === 'signin' && 'header__button_active'
               }`}
             >
               התחבר
+            </button>
+            <button
+              onClick={selectSignup}
+              className={`header__button ${
+                site.selectedForm === 'signup' && 'header__button_active'
+              }`}
+            >
+              הרשמה
             </button>
           </div>
           {<UserForm />}

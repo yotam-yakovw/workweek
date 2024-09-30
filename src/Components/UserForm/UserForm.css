@@ -3,6 +3,7 @@
   border-radius: 20px;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 10px;
   opacity: 0;
   max-height: 0;
@@ -12,10 +13,17 @@
 }
 
 .user-form_open {
-  max-height: 300px;
+  max-height: fit-content;
   border: 10px solid grey;
   padding: 20px 10px;
   opacity: 1;
+}
+
+.user-form__notice {
+  direction: rtl;
+  color: black;
+  font-size: 14px;
+  width: 100%;
 }
 
 .user-form__input {

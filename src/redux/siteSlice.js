@@ -10,14 +10,14 @@ const siteSlice = createSlice({
       id: 0,
     },
     isEdit: false,
-    isForm: false,
+    selectedForm: false,
   },
   reducers: {
     switchEdit: (state) => {
       state.isEdit = !state.isEdit;
     },
-    switchForm: (state) => {
-      state.isForm = !state.isForm;
+    selectForm: (state, action) => {
+      state.selectedForm = action.payload;
     },
     setUser: (state, action) => {
       state.user = action.payload;

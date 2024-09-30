@@ -9,8 +9,8 @@ import { signIn } from '../../utils/api';
 export default function UserForm() {
   const dispatch = useDispatch();
   const [error, setError] = useState('');
-  const isOpen = useSelector((state) => state.site.isForm);
-  const { email, password } = useSelector((state) => state.input);
+  const selectedForm = useSelector((state) => state.site.selectedForm);
+  const { email, password, workplace } = useSelector((state) => state.input);
 
   const setUser = (user) => dispatch(siteSlice.actions.setUser(user));
   const updateValue = (values) =>
@@ -39,8 +39,20 @@ export default function UserForm() {
   return (
     <form
       onSubmit={onSignIn}
-      className={`user-form ${isOpen ? 'user-form_open' : ''}`}
+      className={`user-form ${selectedForm ? 'user-form_open' : ''}`}
     >
+      {selectedForm === 'signup' && (
+        <p className='user-form__notice'>
+          כדי למנוע משתמשים מיותרים ההרשמה עובדת כבקשה,
+          <br />
+          עסק שרוצה לפתוח משתמש ימלא פרטים והבקשה תטופל
+          <br />
+          <br />
+          הרשמה מיודעת לעסק חדש ולא לעובדים,
+          <br />
+          עובדים יקבלו את הפרטים מהמעסיק
+        </p>
+      )}
       <input
         required
         type='email'
@@ -60,8 +72,19 @@ export default function UserForm() {
         id='password'
         className='user-form__input'
       />
+      {selectedForm === 'signup' && (
+        <input
+          required
+          type='text'
+          value={workplace || ''}
+          onChange={onValueChange}
+          placeholder='workplace'
+          id='workplace'
+          className='user-form__input'
+        />
+      )}
       <button type='submit' className='user-form__submit'>
-        התחבר
+        {selectedForm === 'signup' ? 'שלח בקשה' : 'התחבר'}
       </button>
       <p
         className={`user-form__error ${error ? 'user-form__error_active' : ''}`}

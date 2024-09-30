@@ -5,6 +5,7 @@ const inputSlice = createSlice({
   initialState: {
     email: '',
     password: '',
+    workplace: '',
   },
   reducers: {
     updateValue: (state, action) => {
