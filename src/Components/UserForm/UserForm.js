@@ -9,6 +9,7 @@ import { signIn } from '../../utils/api';
 export default function UserForm() {
   const dispatch = useDispatch();
   const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const selectedForm = useSelector((state) => state.site.selectedForm);
   const { email, password, workplace } = useSelector((state) => state.input);
 
@@ -18,14 +19,16 @@ export default function UserForm() {
 
   const onSignIn = (evt) => {
     evt.preventDefault();
-    console.log('default prevented?');
+    setIsLoading(true);
+
     signIn({ email, password })
       .then(({ userHash, token }) => {
         setUser(userHash);
         Cookies.set('token', token);
         window.location.reload();
       })
-      .catch((err) => setError(err.data));
+      .catch((err) => setError(err.data))
+      .finally(() => setIsLoading(false));
   };
 
   const onValueChange = (evt) => {
@@ -83,7 +86,13 @@ export default function UserForm() {
           className='user-form__input'
         />
       )}
-      <button type='submit' className='user-form__submit'>
+      <button
+        disabled={isLoading}
+        type='submit'
+        className={`user-form__submit ${
+          isLoading && 'user-form__submit_loading'
+        }`}
+      >
         {selectedForm === 'signup' ? 'שלח בקשה' : 'התחבר'}
       </button>
       <p

@@ -60,7 +60,23 @@
   padding: 10px 20px 0 30px;
 }
 
+.user-form__submit_loading {
+  animation: loading 1s linear infinite;
+}
+
 .user-form__error {
   font-size: small;
   color: red;
+}
+
+@keyframes loading {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
